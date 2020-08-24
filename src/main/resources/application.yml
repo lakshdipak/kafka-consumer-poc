@@ -1,0 +1,29 @@
+logging:
+  level: 
+    io.confluent.kafka.serializers: INFO
+    org.apache.kafka: INFO
+    org.springframework: INFO
+spring: 
+  kafka: 
+    bootstrap-servers: "localhost:9092"
+    
+    consumer: 
+      topics: kafka-test-topic
+      group-id: genesis-api-consumer-group
+      auto-offset-reset: earliest
+      key-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      #max-failures: -1
+      #concurrency-factor: 3
+      #properties.security.protocol: SSL
+      #properties.ssl.endpoint.identification.algorithm: ""
+      #ssl:
+        #keystore-location: "classpath:/keystore/xxxx.jks"
+        #keystore-password: "${KAFKA_KEY_STORE_PASSWORD}"
+        #truststore-location: "classpath:/keystore/kafka.truststore.jks"
+        #truststore-password: "${KAFKA_TRUST_STORE_PASSWORD}"
+      
+    properties: 
+      schema.registry.url: "http://localhost:8081"
+      specific.avro.reader: true
+
